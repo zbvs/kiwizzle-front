@@ -1,0 +1,230 @@
+@font-face {
+    font-family: 'NotoSans-Medium';
+    src: url(font/NotoSansKR-Medium.otf) format('truetype');
+}
+
+span.spanFilterName {
+    font-size: large;
+    font-weight: 1000;
+}
+
+span.spanFilterItem {
+    /*font-family: "NotoSans-Medium";*/
+}
+
+div.divPasswordBox {
+    border: 1px solid #009900;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+div.dropdownMenu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+a.FilterASelected {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 5px;
+    display: block;
+    color: #3B82F6;
+
+}
+
+a.FilterAUnselected {
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 5px;
+    text-decoration: none;
+    display: block;
+    color: #000000;
+}
+
+a.FilterAUnselected:hover {
+    text-decoration: underline;
+}
+
+
+span.FilterSpanSelected {
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 5px;
+    display: block;
+    color: #3B82F6;
+
+}
+
+span.FilterSpanUnselected {
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 5px;
+    text-decoration: none;
+    display: block;
+}
+
+span.FilterSpanUnselected:hover {
+    text-decoration: underline;
+}
+
+
+span.spanChartSelected {
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: x-large;
+    border-radius: 5px;
+    display: block;
+    color: rgba(59, 130, 246, 255);
+
+    border: 1px solid rgb(200, 200, 200);
+}
+
+span.spanChartUnselected {
+    text-decoration: none;
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: x-large;
+    border-radius: 5px;
+    display: block;
+    border: 1px solid rgb(200, 200, 200);
+
+}
+
+span.spanChartUnselected:hover {
+    text-decoration: underline;
+}
+
+div.divHeader {
+    padding-left: 10px;
+}
+
+div.RowGridCategory {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+div.ItemGrid {
+    background-color: white;
+    padding: 5px;
+
+}
+
+
+div.RowGridMain {
+
+
+}
+
+div.divFilter {
+    background-color: rgba(243, 247, 251, 1);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+div.divMobileFilter {
+    background-color: rgba(243, 247, 251, 1);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-content: center;
+}
+
+div.divMobileFilter:hover {
+    background-color: rgba(205, 222, 238, 1);
+    cursor: pointer;
+}
+
+div.divContent {
+    margin: 10px;
+    padding: 5px;
+}
+
+div.divDropboxItem {
+    padding: 5px;
+}
+
+
+a.aLinkSelected {
+    text-decoration: underline;
+    padding: 0 12px;
+    cursor: pointer;
+    font-size: x-large;
+    display: block;
+    color: #000000;
+}
+
+a.aLinkUnselected {
+    text-decoration: none;
+    padding: 0 12px;
+    cursor: pointer;
+    font-size: x-large;
+    display: block;
+    color: #000000;
+}
+
+a.aLinkSelected:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+
+a.aLinkUnselected:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+span.spancompanyCode {
+    font-size: large;
+    font-weight: 1000;
+}
+
+span.spanJobTitle {
+    font-size: large;
+}
+
+span.spanTagItem {
+    display: inline-block;
+    font-size: small;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #B8B9BC;
+    border-width: 1px;
+    pointer-events: none;
+    border: 1px solid #B8B9BC;
+    margin: 2px;
+    padding: 2px;
+
+}
+
+span.spanThickFont {
+    font-weight: 700;
+}
+
+span.spanTagColumn {
+    color: #009900
+}
+
+checkbox.checkboxCompanyFilter {
+    color: #222222
+    /*color:#3f51b5*/
+}

@@ -1,0 +1,27 @@
+
+div.jobDetailContainer {
+    max-width: 100%;
+}
+
+div.jobDetailContent {
+    padding: 5px;
+}
+
+div.jobDetailContainer img {
+    max-width: 100%;
+}
+
+div.jobDetailContainer * {
+    margin-left: 0px !important;
+}
+
+
+div.jobDetailContainer code, div.jobDetailContainer pre {
+    background-color: #F6F8FA;
+}
+
+div.jobDetailContainer * {
+    word-wrap: break-word;
+    white-space: initial;
+}
+

@@ -1,0 +1,48 @@
+
+button {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+button.search-select-button {
+
+}
+
+
+button.filter-menu-button {
+    text-overflow: ellipsis;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 4vh;
+
+}
+
+button.filter-menu-button:hover {
+    color: #3B82F6 !important;
+    border-color: #3B82F6 !important;
+}
+
+
+button.filter-menu-button-mobile {
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid black
+}
+
+button.filter-menu-button-selected {
+    color: #3B82F6;
+    border-color: #3B82F6;
+}
+
+button.filter-menu-button-changed {
+    color: #9704C4 !important;
+    border-color: #9704C4 !important;
+}
+
+i.fa-angle-down-close {
+    color: white;
+}
+
+
