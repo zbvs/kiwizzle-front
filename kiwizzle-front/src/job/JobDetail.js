@@ -111,7 +111,8 @@ export default function JobDetail() {
                 {"채용공고 링크 : "}
                 </span>
 
-                            <a href={jobView.document.url} rel="noreferrer" target="_blank" style={{fontWeight: '1000'}}>
+                            <a href={jobView.document.url} rel="noreferrer" target="_blank"
+                               style={{fontWeight: '1000'}}>
                                 {decodeURI(jobView.document.url)}
                             </a>
                         </div>
