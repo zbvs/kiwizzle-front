@@ -13,7 +13,7 @@ const JobDetailImage = (props) => {
 
     return (
         <div style={{border: "1px solid #D4D4D4", padding: "5px"}}>
-            <img src={config.API_HOST + `/job/${jobView.descId}/image`} alt={jobView.title + " 채용"}/>
+            <img src={config.API_HOST + `/job/${jobView.descId}/image`} alt={jobView.document.title + " 채용"}/>
         </div>
     )
 };
@@ -34,10 +34,10 @@ const JobDetailContentCollapse = (props) => {
             <div className="collapse" id="job-text-content">
                 <div className="card card-body">
                     {
-                        jobView.type === "html" ?
-                            <div dangerouslySetInnerHTML={{__html: sanitizer(jobView.content)}}/>
+                        jobView.document.type === "html" ?
+                            <div dangerouslySetInnerHTML={{__html: sanitizer(jobView.document.content)}}/>
                             :
-                            <ReactMarkdown>{jobView.content}</ReactMarkdown>
+                            <ReactMarkdown>{jobView.document.content}</ReactMarkdown>
                     }
                 </div>
             </div>
@@ -111,8 +111,8 @@ export default function JobDetail() {
                 {"채용공고 링크 : "}
                 </span>
 
-                            <a href={jobView.url} rel="noreferrer" target="_blank" style={{fontWeight: '1000'}}>
-                                {decodeURI(jobView.url)}
+                            <a href={jobView.document.url} rel="noreferrer" target="_blank" style={{fontWeight: '1000'}}>
+                                {decodeURI(jobView.document.url)}
                             </a>
                         </div>
                         <hr style={{width: "100%"}}/>
