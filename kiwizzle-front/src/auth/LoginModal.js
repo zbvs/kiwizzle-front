@@ -2,9 +2,12 @@ import Modal from "react-bootstrap/Modal";
 import {config} from "../Config";
 import Button from "react-bootstrap/Button";
 import React, {useState} from "react";
-import {AUTH_STATUS, isLoggedInCookieSet, isNeedPasswordEmailSignup, isUnauthorizedOAuth2State} from "./Auth";
+import {
+    AUTH_STATUS,
+    isLoggedInCookieSet,
+    isSignupRedirected,
+} from "./Auth";
 import AuthEmailPassword from "./AuthEmailPassword";
-import AuthOAuth2Password from "./AuthOAuth2Password";
 import AuthFormConfirm from "./AuthFormConfirm";
 import AuthFormSignupSuccess from "./AuthFormSignupSuccess";
 import AuthFormLogin from "./AuthFormLogin";
@@ -16,13 +19,9 @@ import {defaultModalStyle} from "../form/Modal";
 const selectAuthForm = (form, selectForm) => {
 
     switch (form) {
-        case AUTH_STATUS.EMAIL_PASSWORD:
+        case AUTH_STATUS.PASSWORD_REQUIRED:
             return (
                 <AuthEmailPassword selectForm={selectForm}/>
-            )
-        case AUTH_STATUS.OAUTH2_PASSWORD:
-            return (
-                <AuthOAuth2Password selectForm={selectForm}/>
             )
         case AUTH_STATUS.SIGNUP_CONFIRM:
             return (
@@ -50,10 +49,9 @@ const selectAuthForm = (form, selectForm) => {
 
 export default function LoginModal(props) {
     const {modalShow, onModalCloseCallback} = props;
-    const [form, selectForm] = useState(isUnauthorizedOAuth2State() ? AUTH_STATUS.OAUTH2_PASSWORD :
-        isNeedPasswordEmailSignup() ? AUTH_STATUS.EMAIL_PASSWORD : AUTH_STATUS.AUTH_MAIN);
+    const [form, selectForm] = useState(isSignupRedirected() ? AUTH_STATUS.PASSWORD_REQUIRED : AUTH_STATUS.AUTH_MAIN);
     const dispatch = useDispatch();
-
+    
     const handleLoginModalClose = () => {
         if (isLoggedInCookieSet())
             dispatch(authLoggedIn());
@@ -94,3 +92,4 @@ export default function LoginModal(props) {
         </Modal>
     )
 }
+

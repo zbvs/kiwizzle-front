@@ -12,9 +12,7 @@ export const AUTH_STATUS = {
     AUTH_MAIN: "AUTH_MAIN",
     LOGIN: "LOGIN",
     SIGNUP_CONFIRM: "SIGNUP_CONFIRM",
-    EMAIL_PASSWORD: "EMAIL_PASSWORD",
-
-    OAUTH2_PASSWORD: "OAUTH2_PASSWORD",
+    PASSWORD_REQUIRED: "EMAIL_PASSWORD",
     SIGNUP_SUCCESS: "SIGNUP_SUCCESS",
     COMPLETE: "COMPLETE"
 }
@@ -48,7 +46,6 @@ export const AUTH_PATH = "/auth"
 export const USER_PATH = "/user"
 
 export const AUTH_URL_PARAM_SIGNUP_BY = "signup_by";
-export const AUTH_URL_PARAM_VALIDATION_CODE = "code";
 export const AUTH_URL_PARAM_EMAIL = "email";
 
 
@@ -93,10 +90,10 @@ export const isLoggedInCookieSet = () => {
 }
 
 export const isSignupRedirected = () => {
-    return new URLSearchParams(window.location.search).get(AUTH_URL_PARAM_SIGNUP_BY) !== null;
+    return new URLSearchParams(window.location.search).get(AUTH_URL_PARAM_EMAIL) !== null;
 }
 
-export const isNeedPasswordEmailSignup = () => {
+export const isNeedPasswordForSignup = () => {
     return new URLSearchParams(window.location.search).get(AUTH_URL_PARAM_SIGNUP_BY) === "email";
 }
 

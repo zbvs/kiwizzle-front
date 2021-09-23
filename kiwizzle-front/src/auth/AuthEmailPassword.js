@@ -5,7 +5,6 @@ import {
     AUTH_PATH,
     AUTH_STATUS,
     AUTH_URL_PARAM_EMAIL,
-    AUTH_URL_PARAM_VALIDATION_CODE,
     authFontSize,
     authProgressInfo,
     setUserId
@@ -23,7 +22,6 @@ export default function AuthEmailPassword(props) {
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     authProgressInfo.email = new URLSearchParams(window.location.search).get(AUTH_URL_PARAM_EMAIL);
-    const validationCode = new URLSearchParams(window.location.search).get(AUTH_URL_PARAM_VALIDATION_CODE);
 
 
     const handleLogin = () => {
@@ -35,7 +33,6 @@ export default function AuthEmailPassword(props) {
             setMessage(FORM_STATUS_MESSAGE.REPASSWORD_NOT_MATCHED)
         } else {
             requestPost(AUTH_PATH + "/register", {
-                validationCode: validationCode,
                 password: password,
                 rePassword: rePassword
             }).then((result) => {
@@ -63,14 +60,6 @@ export default function AuthEmailPassword(props) {
                 <span style={{color: config.COLOR_BLACK}}>{"ID"}</span>
                 <input style={{marginBottom: "10px", borderColor: config.COLOR_GREEN}}
                        type="text" value={authProgressInfo.email} disabled className="form-control"/>
-
-                <span style={{color: config.COLOR_BLACK}}>{"인증코드"}</span>
-                <input style={{
-                    marginBottom: "10px",
-                    borderColor: loginStatus === FORM_STATUS_CODE.FORM_DEFAULT ? config.COLOR_GREEN : config.COLOR_RED
-                }}
-                       value={validationCode} disabled type="text" className="form-control"/>
-
                 <span style={{color: config.COLOR_BLACK}}>{"비밀번호"}</span>
                 <input style={{
                     marginBottom: "10px",

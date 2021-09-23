@@ -3,7 +3,6 @@ import {config} from "../Config";
 import {
     AUTH_URL_PARAM_EMAIL,
     AUTH_URL_PARAM_SIGNUP_BY,
-    AUTH_URL_PARAM_VALIDATION_CODE,
     authFontSize,
     authProgressInfo
 } from "./Auth";
@@ -18,7 +17,6 @@ export default function AuthFormSignupSuccess() {
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search)
         queryParams.delete(AUTH_URL_PARAM_EMAIL);
-        queryParams.delete(AUTH_URL_PARAM_VALIDATION_CODE);
         queryParams.delete(AUTH_URL_PARAM_SIGNUP_BY);
         history.replace({
             search: queryParams.toString(),
