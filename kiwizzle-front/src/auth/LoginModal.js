@@ -2,11 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import {config} from "../Config";
 import Button from "react-bootstrap/Button";
 import React, {useState} from "react";
-import {
-    AUTH_STATUS,
-    isLoggedInCookieSet,
-    isSignupRedirected,
-} from "./Auth";
+import {AUTH_STATUS, isLoggedInCookieSet, isSignupRedirected,} from "./Auth";
 import AuthEmailPassword from "./AuthEmailPassword";
 import AuthFormConfirm from "./AuthFormConfirm";
 import AuthFormSignupSuccess from "./AuthFormSignupSuccess";
@@ -51,7 +47,7 @@ export default function LoginModal(props) {
     const {modalShow, onModalCloseCallback} = props;
     const [form, selectForm] = useState(isSignupRedirected() ? AUTH_STATUS.PASSWORD_REQUIRED : AUTH_STATUS.AUTH_MAIN);
     const dispatch = useDispatch();
-    
+
     const handleLoginModalClose = () => {
         if (isLoggedInCookieSet())
             dispatch(authLoggedIn());

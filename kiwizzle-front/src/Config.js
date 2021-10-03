@@ -1,6 +1,4 @@
-import assert from 'assert';
-
-assert(window.location.host.split(":").length === 1);
+console.log(window.location.host);
 
 const SCHEMA = window.location.protocol + "//"
 const DOMAIN = window.location.host;

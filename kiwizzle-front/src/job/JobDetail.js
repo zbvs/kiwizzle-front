@@ -47,12 +47,12 @@ const JobDetailContentCollapse = (props) => {
 
 const getHTMLTitleContent = (jobDetailed) => {
     let positions = [];
-    for (let id of jobDetailed.meta.position) {
+    for (let id of jobDetailed.metaDetail.position) {
         if (JobData.position[id].publicNameKor !== "기타")
             positions.push(JobData.position[id].publicNameKor);
     }
 
-    let result = JobData.company[jobDetailed.meta.company].publicNameKor + " " + positions.join(",") + " 채용: " + jobDetailed.document.title;
+    let result = JobData.company[jobDetailed.metaDetail.company].publicNameKor + " " + positions.join(",") + " 채용: " + jobDetailed.document.title;
     const regex = /(\u00a0|\s)/g;
     return result.replace(regex, " ");
 
@@ -62,7 +62,7 @@ const getHTMLMetaDescriptionContent = (jobDetailed) => {
     const registrationDate = jobDetailed.dates.registrationDate.substring(0, 10);
     const endDate = jobDetailed.dates.endDate === null ? "채용시/미정" : jobDetailed.dates.endDate.substring(0, 10);
     let languages = [];
-    for (let id of jobDetailed.meta.language) {
+    for (let id of jobDetailed.metaDetail.language) {
         languages.push(JobData.language[id].publicNameEng)
     }
     const requireString = languages.length === 0 ? "" : " [요구 언어/기술]: " + languages.join(",");

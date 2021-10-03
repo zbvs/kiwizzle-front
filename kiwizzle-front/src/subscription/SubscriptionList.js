@@ -45,43 +45,46 @@ export default function SubscriptionList(props) {
     const languageOption = globalQueryState.languageSearchType;
     const requireOnly = languageOption === config.SEARCH_LANGUAGE_REQUIRE_ONLY;
 
-    const toViewData = (data) => {
-        data = JSON.parse(JSON.stringify(data))
-        data.company = (data.company.length === getRealCidAll().length || data.company.length === 0)
-            ? [config.CP_ID_ROOT] : data.company;
-        data.position = (data.position.length === getRealPidAll().length || data.position.length === 0)
-            ? [config.PS_ID_ROOT] : data.position;
-        data.language = data.language.length === 0 ? [] : data.language;
-        data.experienceAbove = typeof data.experienceAbove === "string" ? data.experienceAbove
-            : data.experienceAbove ? data.experienceAbove.toString() : "";
+    const toSubscriptionView = (srcSubscription) => {
+        const reactViewSubscription = JSON.parse(JSON.stringify(srcSubscription))
+        const setting = reactViewSubscription.subscriptionSetting;
+        setting.company = (setting.company.length === getRealCidAll().length || setting.company.length === 0)
+            ? [config.CP_ID_ROOT] : setting.company;
+        setting.position = (setting.position.length === getRealPidAll().length || setting.position.length === 0)
+            ? [config.PS_ID_ROOT] : setting.position;
+        setting.language = setting.language.length === 0 ? [] : setting.language;
+        setting.experienceAbove = typeof setting.experienceAbove === "string" ? setting.experienceAbove
+            : setting.experienceAbove ? setting.experienceAbove.toString() : "";
 
-        data.experienceBelow = typeof data.experienceBelow === "string" ? data.experienceBelow
-            : data.experienceBelow ? data.experienceBelow.toString() : "";
-        return data;
+        setting.experienceBelow = typeof setting.experienceBelow === "string" ? setting.experienceBelow
+            : setting.experienceBelow ? setting.experienceBelow.toString() : "";
+        return reactViewSubscription;
     }
 
 
-    const subscribtionRealData = {
-        company: getRealCidSelected(),
-        position: getRealPidSelected(),
-        language: getRealLidSelected(),
-        requireOnly: requireOnly,
-        experienceAbove: globalQueryState.experienceAbove,
-        experienceBelow: globalQueryState.experienceBelow,
-        enabled: false,
+    const currentFilterSubscription = {
+        subscriptionSetting: {
+            company: getRealCidSelected(),
+            position: getRealPidSelected(),
+            language: getRealLidSelected(),
+            requireOnly: requireOnly,
+            experienceAbove: globalQueryState.experienceAbove,
+            experienceBelow: globalQueryState.experienceBelow,
+            enabled: false,
+        }
     };
 
-    const subscribtionViewData = toViewData(subscribtionRealData);
+    const currentFilterView = toSubscriptionView(currentFilterSubscription);
 
 
-    const fetchRerender = () => {
+    const fetchSubscriptions = () => {
         requestGet(USER_PATH + `/${getUserId()}` + SUBSCRIPTION_API_PATH).then((result) => {
             setFetched(true);
             if (result.status !== HTTP_CODE.OK) {
                 setMessage(FORM_STATUS_MESSAGE.SERVER_ERROR);
             } else {
                 for (const index in result.data) {
-                    result.data[index] = toViewData(result.data[index]);
+                    result.data[index] = toSubscriptionView(result.data[index]);
                 }
                 setFetchedSubscriptions([...result.data]);
             }
@@ -90,7 +93,7 @@ export default function SubscriptionList(props) {
 
 
     if (!fetched) {
-        fetchRerender();
+        fetchSubscriptions();
     }
 
     const deleteButtonHandler = (viewData) => {
@@ -98,40 +101,42 @@ export default function SubscriptionList(props) {
             if (result.status !== HTTP_CODE.OK) {
                 setMessage(FORM_STATUS_MESSAGE.SERVER_ERROR);
             }
-            fetchRerender();
+            fetchSubscriptions();
         })
     }
 
     const addButtonHandler = () => {
-        requestPost(USER_PATH + `/${getUserId()}` + SUBSCRIPTION_API_PATH, subscribtionRealData).then((result) => {
+        requestPost(USER_PATH + `/${getUserId()}` + SUBSCRIPTION_API_PATH, currentFilterSubscription.subscriptionSetting).then((result) => {
             if (result.status !== HTTP_CODE.OK) {
                 setMessage(FORM_STATUS_MESSAGE.SERVER_ERROR);
             }
-            fetchRerender();
+            fetchSubscriptions();
         })
     }
 
-    const checkBoxHandler = (viewData, enabled) => {
-        viewData.enabled = enabled;
-        requestPut(USER_PATH + `/${getUserId()}` + SUBSCRIPTION_API_PATH + `/${viewData.subscriptionId}`, viewData).then((result) => {
-            if (result.status !== HTTP_CODE.OK) {
-                setMessage(FORM_STATUS_MESSAGE.SERVER_ERROR);
-            }
-            fetchRerender();
-        })
+    const checkBoxHandler = (subscriptionView, enabled) => {
+        subscriptionView.subscriptionSetting.enabled = enabled;
+        requestPut(USER_PATH + `/${getUserId()}` + SUBSCRIPTION_API_PATH + `/${subscriptionView.subscriptionId}`,
+            subscriptionView.subscriptionSetting)
+            .then((result) => {
+                if (result.status !== HTTP_CODE.OK) {
+                    setMessage(FORM_STATUS_MESSAGE.SERVER_ERROR);
+                }
+                fetchSubscriptions();
+            })
     }
 
     logger.trace("#### JobList listing Descs rendered");
     const itemList = [];
 
-    for (const fetchedSubscription of fetchedSubscriptions) {
-        itemList.push(<Subscription isAddComponent={false} key={itemList.length} subscribtionData={fetchedSubscription}
+    for (const fetchedSubscriptionView of fetchedSubscriptions) {
+        itemList.push(<Subscription isAddComponent={false} key={itemList.length} subscription={fetchedSubscriptionView}
                                     buttonText={"Delete"}
                                     onCheckBoxChange={checkBoxHandler} onButtonClick={deleteButtonHandler}/>)
     }
     if (itemList.length < 5)
         itemList.push(<Subscription on isAddComponent={true} style={{border: `1px solid #3B82F6`}} key={itemList.length}
-                                    subscribtionData={subscribtionViewData} buttonText={"Add"}
+                                    subscription={currentFilterView} buttonText={"Add"}
                                     onButtonClick={addButtonHandler}/>)
 
 

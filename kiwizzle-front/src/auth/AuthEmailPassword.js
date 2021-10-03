@@ -1,14 +1,7 @@
 import React, {useState} from "react";
 import {HTTP_CODE, requestPost} from "../api/api";
 import {config} from "../Config";
-import {
-    AUTH_PATH,
-    AUTH_STATUS,
-    AUTH_URL_PARAM_EMAIL,
-    authFontSize,
-    authProgressInfo,
-    setUserId
-} from "./Auth";
+import {AUTH_PATH, AUTH_STATUS, AUTH_URL_PARAM_EMAIL, authFontSize, authProgressInfo, setUserId} from "./Auth";
 import {modalUseStyles} from "../form/Modal";
 import {FORM_STATUS_CODE, FORM_STATUS_MESSAGE} from "../form/Form";
 

@@ -416,23 +416,23 @@ export const getJobDetailComponent = (job, isMobile = false) => {
 
     const registrationDate = job.dates.registrationDate.substring(0, 10);
     const endDate = job.dates.endDate === null ? "채용시/미정" : job.dates.endDate.substring(0, 10);
-    const company = JobData.company[job.meta.company];
+    const company = JobData.company[job.metaDetail.company];
 
     let positions = [];
-    for (let id of job.meta.position) {
+    for (let id of job.metaDetail.position) {
         positions.push(<span disabled key={positions.length}
                              className={Style.spanTagItem}>{JobData.position[id].publicNameEng}</span>)
     }
 
     let languages = [];
-    for (let id of job.meta.language) {
+    for (let id of job.metaDetail.language) {
         languages.push(<span disabled key={languages.length}
                              className={Style.spanTagItem}>{JobData.language[id].publicNameEng}</span>)
     }
 
     let languagePreferreds = [];
-    for (let id of job.meta.languagePreferred) {
-        if (!job.meta.language.includes(id))
+    for (let id of job.metaDetail.languagePreferred) {
+        if (!job.metaDetail.language.includes(id))
             languagePreferreds.push(<span disabled key={languagePreferreds.length}
                                           className={Style.spanTagItem}>{JobData.language[id].publicNameEng}</span>)
     }
@@ -481,12 +481,12 @@ export const getJobDetailComponent = (job, isMobile = false) => {
                     : null}
 
 
-                {job.meta.recommendExperience === null ? null :
+                {job.metaDetail.recommendExperience === null ? null :
                     <>
                         <span className={Style.spanTagColumn}>{" 경력: "}</span>
 
                         <span className={Style.spanTagItem}>{
-                            job.meta.recommendExperience + "년"
+                            job.metaDetail.recommendExperience + "년"
                         }
                      </span>
                         <span>{

@@ -1,11 +1,6 @@
 import React, {useEffect} from "react";
 import {config} from "../Config";
-import {
-    AUTH_URL_PARAM_EMAIL,
-    AUTH_URL_PARAM_SIGNUP_BY,
-    authFontSize,
-    authProgressInfo
-} from "./Auth";
+import {AUTH_URL_PARAM_EMAIL, AUTH_URL_PARAM_SIGNUP_BY, authFontSize, authProgressInfo} from "./Auth";
 import {useHistory, useLocation} from 'react-router-dom'
 
 

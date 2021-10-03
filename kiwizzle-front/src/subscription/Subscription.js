@@ -30,15 +30,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArrayItemsComponent = (props) => {
-    const {spanName, subscribtionData, keyname} = props;
+    const {spanName, subscriptionSetting, keyname} = props;
 
     const JobDataKey = keyname;
-    const JobDataNameKey = keyname + "Code"
     let items = [];
 
-    for (const id of subscribtionData[keyname]) {
+    for (const id of subscriptionSetting[keyname]) {
         items.push(<span disabled key={items.length}
-                         className={Style.spanTagItem}>{JobData[JobDataKey][id][JobDataNameKey]}</span>)
+                         className={Style.spanTagItem}>{JobData[JobDataKey][id]["publicNameEng"]}</span>)
     }
 
     return (
@@ -53,10 +52,10 @@ const ArrayItemsComponent = (props) => {
 
 
 const ExperiencePairComponent = (props) => {
-    const {subscribtionData} = props;
+    const {subscriptionSetting} = props;
 
-    const experienceAbove = subscribtionData.experienceAbove;
-    const experienceBelow = subscribtionData.experienceBelow;
+    const experienceAbove = subscriptionSetting.experienceAbove;
+    const experienceBelow = subscriptionSetting.experienceBelow;
 
     if (!experienceAbove && !experienceBelow) {
         return (
@@ -84,18 +83,18 @@ const ExperiencePairComponent = (props) => {
 
 
 export default function Subscription(props) {
-    const {isAddComponent, subscribtionData, style, buttonText, onButtonClick} = props;
+    const {isAddComponent, subscription, style, buttonText, onButtonClick} = props;
     const classes = useStyles();
-
-    const langOptionText = subscribtionData.requireOnly === true ?
+    const subscriptionSetting = subscription.subscriptionSetting;
+    const langOptionText = subscription.requireOnly === true ?
         subscribe_text.LANGUAGE_REQUIRE_ONLY : subscribe_text.LANGUAGE_TOTAL;
 
     const buttonClick = () => {
-        onButtonClick(subscribtionData);
+        onButtonClick(subscription);
     }
 
     const checkBoxChange = (event) => {
-        props.onCheckBoxChange(subscribtionData, event.target.checked);
+        props.onCheckBoxChange(subscription, event.target.checked);
     }
 
     return (
@@ -103,11 +102,13 @@ export default function Subscription(props) {
 
             <div style={style} className={classes.divSubscription}>
 
-                <ArrayItemsComponent spanName={"Company"} subscribtionData={subscribtionData} keyname={"company"}/>
-                <ArrayItemsComponent spanName={"Position"} subscribtionData={subscribtionData} keyname={"position"}/>
-                <ArrayItemsComponent spanName={`Language ${langOptionText}`} subscribtionData={subscribtionData}
+                <ArrayItemsComponent spanName={"Company"} subscriptionSetting={subscriptionSetting}
+                                     keyname={"company"}/>
+                <ArrayItemsComponent spanName={"Position"} subscriptionSetting={subscriptionSetting}
+                                     keyname={"position"}/>
+                <ArrayItemsComponent spanName={`Language ${langOptionText}`} subscriptionSetting={subscriptionSetting}
                                      keyname={"language"}/>
-                <ExperiencePairComponent subscribtionData={subscribtionData}/>
+                <ExperiencePairComponent subscriptionSetting={subscriptionSetting}/>
 
                 <div className={classes.divSubscriptionButtonBox}>
                     {isAddComponent ?
@@ -116,7 +117,7 @@ export default function Subscription(props) {
                         <div className="form-check" style={{marginRight: "10px"}}>
 
                             <input onChange={checkBoxChange} className="form-check-input" type="checkbox" value=""
-                                   id="flexCheckChecked" checked={subscribtionData.enabled}/>
+                                   id="flexCheckChecked" checked={subscriptionSetting.enabled}/>
                             <label className="form-check-label" htmlFor="flexCheckChecked">
                                 Enable
                             </label>
