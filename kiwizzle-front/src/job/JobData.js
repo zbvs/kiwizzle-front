@@ -31,11 +31,17 @@ export const JobInitDataExtractors = {
         JobData.country[x["countryId"]] = x;
     }),
     "/company": (result) => result.data.forEach(x => {
-        recursiveStringifyId(x);
+        const jobCnt = x.jobCnt;
+        x = x.companyView;
+        x.jobCnt = jobCnt;
+        Object.assign(x, x.detail);
+        delete x.detail;
         x.childs = [];
         x.parent = null;
         x.type = config.CP_TYPE_REAL;
         x.countedJobCnt = 0;
+        recursiveStringifyId(x);
+
         JobData.company[x["companyId"]] = x;
     }),
     "/position": (result) => result.data.forEach(x => {
@@ -481,12 +487,12 @@ export const getJobDetailComponent = (job, isMobile = false) => {
                     : null}
 
 
-                {job.metaDetail.recommendExperience === null ? null :
+                {job.metaDetail.experience === null ? null :
                     <>
                         <span className={Style.spanTagColumn}>{" 경력: "}</span>
 
                         <span className={Style.spanTagItem}>{
-                            job.metaDetail.recommendExperience + "년"
+                            job.metaDetail.experience + "년"
                         }
                      </span>
                         <span>{

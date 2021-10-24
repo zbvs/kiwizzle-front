@@ -69,7 +69,7 @@ export default function AuthEmailPassword(props) {
                 <span style={{color: config.COLOR_RED}}>{message}</span>
                 <button style={{fontSize: authFontSize}} className={classes.buttonStart} type="button"
                         onClick={handleLogin}>
-                    이메일로 회원가입
+                    회원가입 완료
                 </button>
 
             </div>

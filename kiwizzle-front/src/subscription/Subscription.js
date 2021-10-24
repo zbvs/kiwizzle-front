@@ -86,7 +86,7 @@ export default function Subscription(props) {
     const {isAddComponent, subscription, style, buttonText, onButtonClick} = props;
     const classes = useStyles();
     const subscriptionSetting = subscription.subscriptionSetting;
-    const langOptionText = subscription.requireOnly === true ?
+    const langOptionText = subscriptionSetting.requireOnly === true ?
         subscribe_text.LANGUAGE_REQUIRE_ONLY : subscribe_text.LANGUAGE_TOTAL;
 
     const buttonClick = () => {

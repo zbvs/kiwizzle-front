@@ -52,7 +52,7 @@ export default function SubscriptionList(props) {
             ? [config.CP_ID_ROOT] : setting.company;
         setting.position = (setting.position.length === getRealPidAll().length || setting.position.length === 0)
             ? [config.PS_ID_ROOT] : setting.position;
-        setting.language = setting.language.length === 0 ? [] : setting.language;
+        setting.language = setting.language.length === 0 ? [] : setting.language;k
         setting.experienceAbove = typeof setting.experienceAbove === "string" ? setting.experienceAbove
             : setting.experienceAbove ? setting.experienceAbove.toString() : "";
 

@@ -1,5 +1,3 @@
-console.log(window.location.host);
-
 const SCHEMA = window.location.protocol + "//"
 const DOMAIN = window.location.host;
 const API_PATH = "/api/v1"
@@ -10,7 +8,7 @@ export const config = {
     API_HOST: `${SCHEMA}${DOMAIN}${API_PATH}`,
     DEBUG: true,
     SEARCH_TEXT_TITLE: "SEARCH_TEXT_TITLE",
-    SEARCH_TEXT_FULL: "SEARCH_TEXT_FULL",
+    SEARCH_TEXT_ALL: "SEARCH_TEXT_ALL",
     SEARCH_ORDER_COMPANY: "SEARCH_ORDER_COMPANY",
     SEARCH_ORDER_REGISTRATION_DATE_DESC: "SEARCH_ORDER_REGISTRATION_DATE_ASC",
     SEARCH_ORDER_REMAIN_TIME_ASC: "SEARCH_ORDER_REMAIN_TIME_ASC",

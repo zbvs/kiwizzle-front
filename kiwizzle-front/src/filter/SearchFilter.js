@@ -8,7 +8,7 @@ import {doQuery} from "../store/job-reducer";
 
 const SearchTextTable = {}
 SearchTextTable[config.SEARCH_TEXT_TITLE] = "제목";
-SearchTextTable[config.SEARCH_TEXT_FULL] = "제목/본문";
+SearchTextTable[config.SEARCH_TEXT_ALL] = "제목/본문";
 
 export default function SearchFilter(props) {
 
@@ -68,7 +68,7 @@ export default function SearchFilter(props) {
                 </button>
                 <ul className="dropdown-menu dropdown-menu-search-text" aria-labelledby="dLabel">
                     <li value={config.SEARCH_TEXT_TITLE}>{SearchTextTable[config.SEARCH_TEXT_TITLE]}</li>
-                    <li value={config.SEARCH_TEXT_FULL}>{SearchTextTable[config.SEARCH_TEXT_FULL]}</li>
+                    <li value={config.SEARCH_TEXT_ALL}>{SearchTextTable[config.SEARCH_TEXT_ALL]}</li>
                 </ul>
             </div>
             <input style={isQueryStateDefaultWithKey("searchText") ? {
